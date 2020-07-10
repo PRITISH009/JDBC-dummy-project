@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.company.eis.bean.Employee;
+
 
 public class EmployeeDaoImpl implements EmployeeDao{
 	
@@ -24,13 +26,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	}
 
 	@Override
-	public void displayInsuranceScheme(String username, Connection connection) throws SQLException{
-		
-		int salary;
-		String designation;
+	public Employee displayInsuranceScheme(String username, Connection connection) throws SQLException{
 		
 		//SQL Query that returns the Salary and Designation of the (Already validated) User.
-		String query = "Select Salary, Designation from Employee where UserID = ?";
+		String query = "Select Name, Salary, Designation from Employee where UserID = ?";
 		
 		PreparedStatement pr = connection.prepareStatement(query);
 		pr.setNString(1, username);
@@ -38,21 +37,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		ResultSet result = pr.executeQuery();
 		result.next();
 		
-		salary = Integer.parseInt(result.getString(1));
-		designation = result.getString(2);
-		//System.out.println(salary + " , " + designation);
+		Employee employee = new Employee(username, result.getString(1), Integer.parseInt(result.getString(2)), result.getString(3));
 		
-		if(salary <5000 && designation.contentEquals("Clerk")) {
-			System.out.println("No Scheme");
-		}else if(salary >=5000 && salary < 20000 ) {
-			System.out.println("Scheme C");
-		}else if(salary >= 20000 && salary < 40000) {
-			System.out.println("Scheme B");
-		}else if(salary >= 40000) {
-			System.out.println("Scheme A");
-		}else {
-			System.out.println("No Scheme Yet...");
-		}
+		return employee;
 	}
 
 }
+
