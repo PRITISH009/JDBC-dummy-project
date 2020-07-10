@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.company.eis.bean.Employee;
 import com.company.eis.dao.EmployeeDaoImpl;
 
 public class EmployeeServiceSchemeImpl implements EmployeeServiceScheme{
@@ -50,7 +51,19 @@ public class EmployeeServiceSchemeImpl implements EmployeeServiceScheme{
 	@Override
 	public void displayInsuranceScheme(String username, Connection connection) throws SQLException {
 		// Interact with the dao method that intern interacts with the database and get user salary and user designation and gives the Insurance Scheme
-		dao.displayInsuranceScheme(username, connection);
+		Employee employee = dao.displayInsuranceScheme(username, connection);
+		
+		if(employee.getSalary() <5000 && employee.getDesignation().contentEquals("Clerk")) {
+			System.out.println("No Scheme");
+		}else if(employee.getSalary() >=5000 && employee.getSalary() < 20000 && employee.getDesignation().contentEquals("System Associate") ) {
+			System.out.println("Scheme C");
+		}else if(employee.getSalary() >= 20000 && employee.getSalary() < 40000 && employee.getDesignation().contentEquals("Programmer")) {
+			System.out.println("Scheme B");
+		}else if(employee.getSalary() >= 40000 && employee.getDesignation().contentEquals("Manager")) {
+			System.out.println("Scheme A");
+		}else {
+			System.out.println("No Scheme Yet...");
+		}
 	}
 
 	
