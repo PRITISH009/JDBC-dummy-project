@@ -1,11 +1,19 @@
 package com.company.eis.bean;
 
 public class Employee {
-	private int Id;
+	
+	private String userId;
 	private String name;
 	private int salary;
 	private String designation;
-	private String insuranceScheme;
+	
+	public Employee(String userId, String name, int salary, String designation) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.salary = salary;
+		this.designation = designation;
+	}
 	
 	public String getName() {
 		return name;
@@ -13,11 +21,11 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getId() {
-		return Id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(int id) {
-		Id = id;
+	public void setUserId(String id) {
+		this.userId = id;
 	}
 	public int getSalary() {
 		return salary;
@@ -31,11 +39,6 @@ public class Employee {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getInsuranceScheme(){
-		return insuranceScheme;
-	}
-	public void setInsuranceScheme(String insuranceScheme){
-		this.insuranceScheme = insuranceScheme;
-	}
+	
 	
 }
