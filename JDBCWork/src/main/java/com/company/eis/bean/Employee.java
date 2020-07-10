@@ -5,6 +5,7 @@ public class Employee {
 	private String name;
 	private int salary;
 	private String designation;
+	private String insuranceScheme;
 	
 	public String getName() {
 		return name;
@@ -29,6 +30,12 @@ public class Employee {
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	public String getInsuranceScheme(){
+		return insuranceScheme;
+	}
+	public void setInsuranceScheme(String insuranceScheme){
+		this.insuranceScheme = insuranceScheme;
 	}
 	
 }
