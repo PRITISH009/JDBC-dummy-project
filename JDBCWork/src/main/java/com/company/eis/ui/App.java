@@ -31,7 +31,8 @@ public class App
 		} catch (ClassNotFoundException e) {
 			
 			// Check if JDBC driver was loaded correctly
-			System.out.println("Failed to Load the Driver");
+			System.out.println("DataBase Error");
+			// Not handled properly yet..
 			e.printStackTrace();
 		
 		}
